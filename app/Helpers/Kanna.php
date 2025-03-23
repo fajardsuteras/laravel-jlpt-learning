@@ -7,7 +7,6 @@ class Kanna
     private static $romajiToHiragana = [
         'shi' => 'し', 'chi' => 'ち', 'tsu' => 'つ', 'fu' => 'ふ', 
         'ja' => 'じゃ', 'ju' => 'じゅ', 'jo' => 'じょ',
-        'fa' => 'ふぁ', 'fi' => 'ふぃ', 'fe' => 'ふぇ', 'fo' => 'ふぉ',
         'wa' => 'わ', 'wo' => 'を',
         'ra' => 'ら', 'ri' => 'り', 'ru' => 'る', 're' => 'れ', 'ro' => 'ろ',
         'za' => 'ざ', 'zu' => 'ず', 'ze' => 'ぜ', 'zo' => 'ぞ',
@@ -29,8 +28,22 @@ class Kanna
         'ba' => 'ば', 'bi' => 'び', 'bu' => 'ぶ', 'be' => 'べ', 'bo' => 'ぼ',
         'pa' => 'ぱ', 'pi' => 'ぴ', 'pu' => 'ぷ', 'pe' => 'ぺ', 'po' => 'ぽ',
         
+        // kombinasi huruf konsonan mati
+        'b' => 'ぶ','c' => 'く','d' => 'ど','f' => 'ふ','g' => 'ぐ','h' => 'ふ',
+        'j' => 'じ','k' => 'く','l' => 'る','m' => 'む','n' => 'ん','p' => 'ぷ',
+        'q' => 'く','r' => 'る','s' => 'す','t' => 'と','v' => 'ゔ','w' => 'う',
+        'x' => 'くす','y' => 'や','z' => 'ず',
+
         // kombinasi lain
-        'fa' => 'ぱ', 'fi' => 'ぴ', 'fu' => 'ぷ', 'fe' => 'ぺ', 'fo' => 'ぽ','r' => 'る',
+        'fa' => 'ぱ', 'fi' => 'ぴ', 'fu' => 'ぷ', 'fe' => 'ぺ', 'fo' => 'ぽ',
+        'da' => 'だ', 'di' => 'ぢ', 'du' => 'づ', 'de' => 'で', 'do' => 'ど',
+        'yi' => 'い','he' => 'へ',
+        'qa' => 'か', 'qi' => 'き', 'qu' => 'く', 'qe' => 'け', 'qo' => 'こ',
+        'wi' => 'ひ', 'we' => 'へ',
+        'xa' => 'くさ', 'xi' => 'くし', 'xu' => 'くす', 'xe' => 'くせ', 'xo' => 'くそ',
+        'ca' => 'か', 'ci' => 'き', 'cu' => 'く', 'ce' => 'け', 'co' => 'こ',
+        'la' => 'ら', 'li' => 'り', 'lu' => 'る', 'le' => 'れ', 'lo' => 'ろ',
+        
 
         // Spesial
         'n' => 'ん',
@@ -43,7 +56,13 @@ class Kanna
 
     public static function toHiragana($text)
     {
-        return self::convertKana($text, self::$romajiToHiragana);
+        return self::convertKana(strtolower($text), self::$romajiToHiragana);
+    }
+
+    public static function toKatakana($text)
+    {
+        $hiragana = self::convertKana(strtolower($text), self::$romajiToHiragana);
+        return mb_convert_kana($hiragana, 'C');
     }
 
     private static function convertKana($text, $kanaMap)

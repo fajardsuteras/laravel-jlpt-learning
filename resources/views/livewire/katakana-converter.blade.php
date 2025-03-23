@@ -1,8 +1,8 @@
 <div class="p-8 bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="max-w-3xl mx-auto bg-white p-8 shadow-lg rounded-lg text-center">
+    <div class="max-w-3xl mx-auto bg-white p-8 shadow-lg rounded-lg text-center" style="min-width: 48rem;">
         <h1 class="text-2xl font-bold mb-4">Katakana Converter</h1>
 
-        <textarea wire:model="inputText" class="w-full border p-2 rounded-lg" rows="3" placeholder="Masukkan teks..."></textarea>
+        <textarea wire:model="inputText" class="w-full border p-2 rounded-lg" rows="5" placeholder="Masukkan teks..."></textarea>
 
         <button wire:click="convertToKatakana" class="mt-4 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
             Convert
